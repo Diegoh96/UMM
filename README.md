@@ -40,32 +40,32 @@ dummy-store-node/
 ├── data/
 │   └── db.json                # "Base de datos" persistente (usuarios, juegos, mensajes)
 └── public/
-    ├── shared/
-    │   └── shared.css         # Variables de tema y estilos base comunes
-    ├── welcome/                # Pantalla de bienvenida (SIEMPRE es la primera parada)
-    │   ├── welcome.html
-    │   ├── welcome.css
-    │   └── welcome.js
-    ├── login/                  # Inicio de sesión (independiente)
-    │   ├── login.html
-    │   ├── login.css
-    │   └── login.js
-    ├── register/                # Registro (independiente)
-    │   ├── register.html
-    │   ├── register.css
-    │   └── register.js
-    ├── tienda/                  # Tienda: carrusel de reservas + categorías
-    │   ├── tienda.html
-    │   ├── tienda.css
-    │   └── tienda.js
-    ├── carrito/                 # Ventana de compra
-    │   ├── carrito.html
-    │   ├── carrito.css
-    │   └── carrito.js
-    └── admin/                   # Panel del administrador (CRUD juegos + mensajes)
-        ├── admin.html
-        ├── admin.css
-        └── admin.js
+├── shared/
+│   └── shared.css         # Variables de tema y estilos base comunes
+├── welcome/                # Pantalla de bienvenida (SIEMPRE es la primera parada)
+│   ├── welcome.html
+│   ├── welcome.css
+│   └── welcome.js
+├── login/                  # Inicio de sesión (independiente)
+│   ├── login.html
+│   ├── login.css
+│   └── login.js
+├── register/                # Registro (independiente)
+│   ├── register.html
+│   ├── register.css
+│   └── register.js
+├── tienda/                  # Tienda: carrusel de reservas + categorías
+│   ├── tienda.html
+│   ├── tienda.css
+│   └── tienda.js
+├── carrito/                 # Ventana de compra
+│   ├── carrito.html
+│   ├── carrito.css
+│   └── carrito.js
+└── admin/                   # Panel del administrador (CRUD juegos + mensajes)
+├── admin.html
+├── admin.css
+└── admin.js
 
 Cada página tiene su propio HTML, CSS y JS, sin mezclarse entre sí (solo comparten
 shared.css con las variables de color/tipografía para mantener el mismo tema visual
