@@ -1,0 +1,111 @@
+{
+  "usuarios": [
+    {
+      "username": "admin",
+      "email": "admin@dummystore.com",
+      "password": "fe14437c0a14d053decda0037dc85f03885846b832c1f62d3604f722dc1f68b2",
+      "rol": "admin",
+      "bloqueado": false
+    },
+    {
+      "username": "pedro",
+      "email": "pedro@gmail.com",
+      "password": "2ab7630432980ddd9bd765eae2b7a441c07895466f69618377b0b3ea87976b8a",
+      "rol": "usuario",
+      "bloqueado": false
+    }
+  ],
+  "juegos": [
+    {
+      "id": 1,
+      "titulo": "GTA VI",
+      "precio": 69.99,
+      "categoria": "reservas",
+      "imagen": "https://via.placeholder.com/400x520?text=GTA+VI"
+    },
+    {
+      "id": 2,
+      "titulo": "Zelda: Echoes",
+      "precio": 59.99,
+      "categoria": "reservas",
+      "imagen": "https://via.placeholder.com/400x520?text=Zelda"
+    },
+    {
+      "id": 3,
+      "titulo": "Silksong 2",
+      "precio": 29.99,
+      "categoria": "reservas",
+      "imagen": "https://via.placeholder.com/400x520?text=Silksong"
+    },
+    {
+      "id": 4,
+      "titulo": "The Last of Us Part 3",
+      "precio": 69.99,
+      "categoria": "aventura",
+      "imagen": "https://via.placeholder.com/300x400?text=TLOU3"
+    },
+    {
+      "id": 5,
+      "titulo": "Uncharted 5",
+      "precio": 49.99,
+      "categoria": "aventura",
+      "imagen": "https://via.placeholder.com/300x400?text=Uncharted"
+    },
+    {
+      "id": 6,
+      "titulo": "Tomb Raider X",
+      "precio": 44.99,
+      "categoria": "aventura",
+      "imagen": "https://via.placeholder.com/300x400?text=Tomb+Raider"
+    },
+    {
+      "id": 7,
+      "titulo": "FIFA 26",
+      "precio": 39.99,
+      "categoria": "deportes",
+      "imagen": "https://via.placeholder.com/300x400?text=FIFA+26"
+    },
+    {
+      "id": 8,
+      "titulo": "NBA 2K27",
+      "precio": 34.99,
+      "categoria": "deportes",
+      "imagen": "https://via.placeholder.com/300x400?text=NBA+2K27"
+    },
+    {
+      "id": 9,
+      "titulo": "Gran Turismo 8",
+      "precio": 54.99,
+      "categoria": "deportes",
+      "imagen": "https://via.placeholder.com/300x400?text=Gran+Turismo"
+    },
+    {
+      "id": 10,
+      "titulo": "Resident Evil 10",
+      "precio": 59.99,
+      "categoria": "terror",
+      "imagen": "https://via.placeholder.com/300x400?text=Resident+Evil"
+    },
+    {
+      "id": 11,
+      "titulo": "Silent Hill: Ashes",
+      "precio": 49.99,
+      "categoria": "terror",
+      "imagen": "https://via.placeholder.com/300x400?text=Silent+Hill"
+    },
+    {
+      "id": 12,
+      "titulo": "Dead Space Reborn",
+      "precio": 39.99,
+      "categoria": "terror",
+      "imagen": "https://via.placeholder.com/300x400?text=Dead+Space"
+    }
+  ],
+  "mensajes": [],
+  "categorias": [
+    "reservas",
+    "aventura",
+    "deportes",
+    "terror"
+  ]
+}
