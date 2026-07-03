@@ -1,153 +1,121 @@
-Dummy Store — Tienda de Videojuegos (Frontend por páginas + Backend Node.js)
+# 🎮 Dummy Store — Tienda de Videojuegos
 
-Integrantes
+Tienda de videojuegos con frontend en HTML/CSS/JS (una página por sección) y
+backend real en **Node.js + Express**, con persistencia en archivo JSON.
 
-IntegranteMejora a cargoDiego SotoContador visual de usuarios (panel admin)Pedro CastroGestión de usuarios (bloquear / desbloquear / eliminar)Maickoll ChallapaExpulsión en caliente
+---
 
-Mejoras UMM (Unidad Metodológica Mínima)
+## 📁 Estructura del proyecto
 
-Sobre la base del proyecto ya entregado en la Unidad III, se integraron las
-siguientes mejoras de JavaScript y experiencia de usuario:
-
-
-Contador visual de usuarios (panel admin): tarjetas de estadísticas en
-admin.html con el total de usuarios registrados, activos, bloqueados,
-juegos en catálogo y mensajes nuevos (GET /api/admin/estadisticas).
-Implementado por: Diego Soto.
-Gestión de usuarios: nueva tabla en el panel admin para bloquear
-("hasta nuevo aviso"), desbloquear y eliminar usuarios
-(/api/admin/usuarios/...). El administrador está protegido: no puede ser
-bloqueado ni eliminado.
-Implementado por: Pedro Castro.
-Aviso al usuario bloqueado: si un usuario bloqueado intenta iniciar
-sesión, ve el mensaje "Usuario bloqueado hasta nuevo aviso" directamente en
-el formulario de login; si intenta entrar por la pantalla de bienvenida
-también se muestra un banner con el mismo aviso.
-Implementado por: Pedro Castro.
-Expulsión en caliente (mejora esencial agregada): si el admin bloquea a
-un usuario que ya tiene una sesión activa, el servidor valida su estado en
-cada petición (verificarBloqueoEnVivo) y lo desconecta de inmediato,
-redirigiéndolo a la bienvenida con el aviso de bloqueo — no se limita a
-impedir el próximo login.
-Implementado por: Maickoll Challapa.
-
-
-Estructura del proyecto
-
+```
 dummy-store-node/
-├── server.js                 # Backend Node.js + Express (API REST, sesiones, CRUD)
+├── server.js         # Backend (API REST, sesiones, CRUD)
 ├── package.json
-├── data/
-│   └── db.json                # "Base de datos" persistente (usuarios, juegos, mensajes)
+├── data/db.json       # Base de datos (usuarios, juegos, mensajes)
 └── public/
-    ├── shared/
-    │   └── shared.css         # Variables de tema y estilos base comunes
-    ├── welcome/                # Pantalla de bienvenida (SIEMPRE es la primera parada)
-    │   ├── welcome.html
-    │   ├── welcome.css
-    │   └── welcome.js
-    ├── login/                  # Inicio de sesión (independiente)
-    │   ├── login.html
-    │   ├── login.css
-    │   └── login.js
-    ├── register/                # Registro (independiente)
-    │   ├── register.html
-    │   ├── register.css
-    │   └── register.js
-    ├── tienda/                  # Tienda: carrusel de reservas + categorías
-    │   ├── tienda.html
-    │   ├── tienda.css
-    │   └── tienda.js
-    ├── carrito/                 # Ventana de compra
-    │   ├── carrito.html
-    │   ├── carrito.css
-    │   └── carrito.js
-    └── admin/                   # Panel del administrador (CRUD juegos + mensajes)
-        ├── admin.html
-        ├── admin.css
-        └── admin.js
+    ├── welcome/        # Pantalla de bienvenida (Registrarse / Iniciar Sesión)
+    ├── login/          # Inicio de sesión
+    ├── register/       # Registro
+    ├── tienda/         # Tienda: carrusel + categorías
+    ├── carrito/        # Ventana de compra
+    ├── admin/          # Panel del administrador
+    └── shared/         # Estilos comunes
+```
 
-Cada página tiene su propio HTML, CSS y JS, sin mezclarse entre sí (solo comparten
-shared.css con las variables de color/tipografía para mantener el mismo tema visual
-en todo el sitio, tal como en el boceto).
+Cada página tiene su propio HTML, CSS y JS.
 
-Backend (Node.js + Express)
+---
 
-Aunque la pauta de la evaluación (Unidad III) solo exige frontend, se agregó un
-backend real "por si acaso":
+## 🚀 Cómo ejecutarlo
 
+### 1. Instalar Node.js (si no lo tienes)
+Descárgalo desde 👉 https://nodejs.org (versión LTS) e instálalo con "Next" en todo.
 
-Persistencia: archivo data/db.json (usuarios, juegos, mensajes).
-Sesiones: cookie sid propia (sin librerías externas de sesión), guardada en
-memoria del servidor.
-Contraseñas: hasheadas con SHA-256 + salt (no se guardan en texto plano).
-Rutas protegidas: /api/juegos (POST/PUT/DELETE) y /api/mensajes (GET) exigen
-rol admin. /carrito y /admin exigen sesión iniciada.
+Verifica que quedó instalado:
+```bash
+node -v
+npm -v
+```
 
+### 2. Instalar Git (si no lo tienes, para clonar/subir el repo)
+Descárgalo desde 👉 https://git-scm.com/download/win e instálalo con "Next" en todo.
+Verifica:
+```bash
+git --version
+```
 
-Endpoints principales
+### 3. Ubícate en la carpeta del proyecto
+```bash
+cd ruta/a/dummy-store-node
+```
+⚠️ Asegúrate de estar en la carpeta que tiene `server.js` adentro (a veces al
+descomprimir un ZIP se crea una carpeta duplicada, sigue entrando con `cd` hasta verlo).
 
-MétodoRutaDescripciónAccesoGET/api/sesionEstado de la sesión actualPúblicoPOST/api/auth/registroCrear cuenta nuevaPúblicoPOST/api/auth/loginIniciar sesiónPúblicoPOST/api/auth/logoutCerrar sesiónCon sesiónGET/api/juegosListar juegosPúblicoPOST/api/juegosAgregar juegoAdminPUT/api/juegos/:idEditar juegoAdminDELETE/api/juegos/:idEliminar juegoAdminPOST/api/mensajesEnviar mensaje al adminCon sesiónGET/api/mensajesVer bandeja completaAdminGET/api/mensajes/miosVer mis propios mensajes enviadosCon sesiónPATCH/api/mensajes/:id/leidoMarcar mensaje como leídoAdminDELETE/api/mensajes/:idEliminar mensajeAdminGET/api/admin/estadisticasContadores para el panel adminAdminGET/api/admin/usuariosListar usuariosAdminPATCH/api/admin/usuarios/:username/bloquearBloquear usuario hasta nuevo avisoAdminPATCH/api/admin/usuarios/:username/desbloquearDesbloquear usuarioAdminDELETE/api/admin/usuarios/:usernameEliminar usuarioAdmin
-
-Cómo ejecutar
-
-bashcd dummy-store-node
+### 4. Instalar las dependencias
+```bash
 npm install
+```
+
+### 5. Levantar el servidor
+```bash
 npm start
+```
+Deberías ver:
+```
+Dummy Store backend corriendo en http://localhost:3000
+Admin de prueba -> usuario: admin | contraseña: admin123
+```
+Deja esa terminal abierta mientras uses la app. Para apagarla: `Ctrl + C`.
 
-Luego abre http://localhost:3000 en el navegador (redirige automáticamente a la
-pantalla de bienvenida).
+### 6. Abrir en el navegador
+👉 http://localhost:3000
 
-Usuario administrador de prueba
+---
 
+## 👤 Usuario administrador de prueba
+| Usuario | Contraseña |
+|---------|------------|
+| `admin` | `admin123` |
 
-Usuario: admin
-Contraseña: admin123
+---
 
+## 🩹 Problemas comunes (Windows / PowerShell)
 
-Flujo de usuario (obligatorio)
+**"npm no se reconoce" o error `PSSecurityException` al correr `npm install`**
+Abre PowerShell **como administrador** y ejecuta una sola vez:
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
 
+**"git no se reconoce como un cmdlet..."**
+Es que Git no está instalado. Ver paso 2 más arriba, y luego cerrar y volver a abrir PowerShell.
 
-Al entrar a http://localhost:3000/, siempre se muestra la pantalla de
-bienvenida con el nombre de la empresa y dos botones: Registrarse e
-Iniciar Sesión (además de un enlace discreto para entrar como invitado
-y solo mirar la tienda).
-Si ya existe una sesión activa, la bienvenida redirige directo a la tienda.
-Registro nuevo → validaciones (usuario, correo, contraseña, confirmación,
-+1 regla adicional) tanto en el cliente como en el servidor.
-Al intentar comprar sin sesión, se pide iniciar sesión antes de continuar
-al carrito.
-El usuario puede enviar un mensaje al admin desde el pie de página de la
-tienda.
-El admin recibe una notificación emergente con el mensaje y accede a su
-panel (/admin/admin.html) para gestionar juegos (agregar/editar/eliminar)
-y revisar/eliminar mensajes.
+---
 
+## 🛠️ Funcionalidades principales
 
-Requisitos cumplidos (rúbrica Unidad III)
+- Registro e inicio de sesión con validaciones (formato, longitud, coincidencia de contraseña).
+- Tienda con carrusel de reservas y categorías dinámicas.
+- Carrito de compra (confirmar / cancelar).
+- Mensajes de contacto al administrador.
+- **Panel admin:**
+  - CRUD de juegos (agregar, editar, eliminar) con combobox de categorías.
+  - Contador de usuarios (registrados, activos, bloqueados).
+  - Bloquear / desbloquear / eliminar usuarios.
+  - Bandeja de mensajes recibidos.
 
+---
 
-Estructura y maqueta: una página por función, HTML/CSS/JS separados por
-cada una.
-DOM y eventos: click, submit, input (carrusel, formularios,
-notificaciones), generación dinámica de tarjetas y filas de tabla.
-Formularios y validaciones: registro con 4 campos y 6 reglas (requerido,
-formato correo, formato usuario, longitud contraseña, coincidencia,
-+1 regla de número), con mensajes de error por campo y preventDefault().
-Persistencia: en el backend (data/db.json) además de sessionStorage
-para datos temporales del carrito.
-Panel admin: CRUD completo de juegos + bandeja de mensajes.
+## 👥 Equipo — mejoras implementadas
 
+| Integrante | Sección | Detalle |
+|---|---|---|
+| **Pedro Castro** | Base de datos | Estructura de `data/db.json` y campo `bloqueado` para las cuentas de usuario. |
+| **Diego Soto** | Sección visual | Tarjetas de estadísticas, tabla de gestión de usuarios y banner de aviso de bloqueo. |
+| **Maickoll Challapa** | Backend | Endpoints de administración, validación de login y expulsión automática de usuarios bloqueados. |
 
-Preguntas de cierre
+---
 
-
-¿Qué validación fue la más compleja? Coordinar la validación de
-formularios tanto en el cliente (feedback inmediato) como en el servidor
-(seguridad real), evitando duplicar lógica de forma inconsistente.
-¿Qué parte del DOM mejoró más la experiencia? La generación dinámica de
-tarjetas de juegos y el carrusel con flechas independientes por categoría,
-reflejando los cambios del CRUD del admin sin recargar la página.
-Con 2 horas más: agregaría subida real de imágenes (multer) en vez de
-URLs, y un token JWT en lugar de sesiones en memoria para que sobrevivan a
-reinicios del servidor.
+## 📌 Notas
+- Los datos se guardan en `data/db.json`, así que se mantienen aunque cierres el servidor.
+- Las contraseñas se guardan encriptadas (hash SHA-256), no en texto plano.
